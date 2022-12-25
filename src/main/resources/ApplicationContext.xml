@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+
+       default-lazy-init="true"
+>
+    <bean id="t1000" class="com.example.robotspring.robot.ModelT1000"
+        p:hand-ref="toshibaHand"
+        p:leg-ref="sonyLeg"
+        p:head-ref="sonyHead"
+
+    >
+
+        <constructor-arg value="silver" index="0" type="java.lang.String"/>
+        <constructor-arg value="2006" index="1" type="int"/>
+        <constructor-arg value="true" index="2" type="boolean"/>
+
+
+<!--        <property name="hand" ref="toshibaHand"/>-->
+<!--        <property name="head" ref="toshibaHead"/>-->
+<!--        <property name="leg" ref="toshibaLeg"/>-->
+    </bean>
+
+
+    <bean id="t1000empty" class="com.example.robotspring.robot.ModelT1000"
+    >
+
+        <constructor-arg ref="sonyHand" />
+        <constructor-arg ref="sonyLeg"/>
+        <constructor-arg ref="toshibaHead" />
+
+
+        <!--        <property name="hand" ref="toshibaHand"/>-->
+        <!--        <property name="head" ref="toshibaHead"/>-->
+        <!--        <property name="leg" ref="toshibaLeg"/>-->
+    </bean>
+
+    <bean id="t1001" class="com.example.robotspring.robot.ModelT1000"
+          c:hand-ref="sonyHand"
+          c:leg-ref="toshibaLeg"
+          c:head-ref="sonyHead"
+          c:color="blue"
+          c:year="2020"
+          c:soundEnabled="false"
+          lazy-init="true"
+    >
+
+    </bean>
+
+
+
+    <bean id="sonyHand" class="com.example.robotspring.sony.SonyHand"/>
+    <bean id="sonyHead" class="com.example.robotspring.sony.SonyHead"/>
+    <bean id="sonyLeg" class="com.example.robotspring.sony.SonyLeg"/>
+
+    <bean id="toshibaHand" class="com.example.robotspring.toshiba.ToshibaHand"/>
+    <bean id="toshibaHead" class="com.example.robotspring.toshiba.ToshibaHead"/>
+    <bean id="toshibaLeg" class="com.example.robotspring.toshiba.ToshibaLeg"/>
+
+    <bean class="com.example.robotspring.MyBeanPostProcessor"/>
+
+</beans>
